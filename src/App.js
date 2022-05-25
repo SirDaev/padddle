@@ -1,6 +1,10 @@
+import { useReducer } from 'react'
 import { ThemeProvider } from 'styled-components';
 // Components
+import { Entries } from './components/Entries'
 import { Main } from './components/Main'
+// Context
+import { GameProvider,gameReducer,initialGameData } from './contexts/game/gameContext'
 // Style
 import {
   Footer,
@@ -12,18 +16,23 @@ const theme = {
 }
 
 function App() {
+  const [gameState,gameDispatch] = useReducer(gameReducer,initialGameData)
+
   return (
-    <ThemeProvider theme={theme}>
-      <Header>
-        <h1>PADD<span>DLE</span></h1>
-      </Header>
-      <Main>
-        <img src="/superior.svg" alt="lake" />
-      </Main>
-      <Footer>
-        footer
-      </Footer>
-    </ThemeProvider>
+    <GameProvider value={{ gameState,gameDispatch}}>
+      <ThemeProvider theme={theme}>
+        <Header>
+          <h1>PADD<span>DLE</span></h1>
+        </Header>
+        <Main>
+          <img src="/superior.svg" alt="lake" />
+          <Entries />
+        </Main>
+        <Footer>
+          footer
+        </Footer>
+      </ThemeProvider>
+    </GameProvider>
   );
 }
 
