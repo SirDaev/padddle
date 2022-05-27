@@ -27,5 +27,9 @@ export const gameReducer = (state = initialGameData, action) => {
         ...state,
         guesses: updatedGuesses
       }
+
+    default: {
+      throw new Error(`Unhandled action type: ${action.type}`);
+    }
   }
 }
