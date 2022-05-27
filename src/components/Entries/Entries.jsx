@@ -11,20 +11,6 @@ const Entries = () => {
   const { gameDispatch,gameState } = useContext(gameContext)
   const [ currentGuess,setCurrentGuess ] = useState('')
   const [ disabled,setDisabled ] = useState(true);
-  const possibleGuesses = [
-    "Clearwater",
-    "Sawbill",
-    "Altono",
-    "Polly",
-    "Smoke",
-    "Flame",
-    "Burnt",
-    "Phoebe",
-    "Zenith",
-    "Mountain",
-    "Hungry Jack",
-    "Bearskin"
-  ];
 
   const handleSubmit = (event) => {
     event.preventDefault();
