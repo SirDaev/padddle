@@ -8,7 +8,8 @@ export const GameConsumer = gameContext.Consumer;
 export default gameContext;
 
 export const initialGameData = {
-  guesses: []
+  guesses: [],
+  todaysLake: "Sawbill"
 }
 
 export const gameReducer = (state = initialGameData, action) => {
