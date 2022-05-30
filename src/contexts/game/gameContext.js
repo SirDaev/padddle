@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 const gameContext = createContext([]);
 
@@ -8,7 +8,13 @@ export const GameConsumer = gameContext.Consumer;
 export default gameContext;
 
 export const initialGameData = {
-  guesses: [],
+  guesses: [
+    {guessed: false, name: "", distance: {mi: null, km: null}},
+    {guessed: false, name: "", distance: {mi: null, km: null}},
+    {guessed: false, name: "", distance: {mi: null, km: null}},
+    {guessed: false, name: "", distance: {mi: null, km: null}},
+    {guessed: false, name: "", distance: {mi: null, km: null}}
+  ],
   todaysLake: "Sawbill"
 }
 
@@ -16,13 +22,23 @@ export const gameReducer = (state = initialGameData, action) => {
 
   switch (action.type) {
 
-    case 'SET_GUESSES':
+    case 'SET_GUESS':
+
+      const maxGuesses = state.guesses.length;
+      let currentGuessIndex = 0;
+      for(let i=0; i<maxGuesses; i++) {
+        if(!state.guesses[i].guessed) {
+          currentGuessIndex = i;
+          break;
+        }
+      }
 
       const updatedGuesses = state.guesses.slice();
-      updatedGuesses.push({
-        text: action.payload,
-        id: uuidv4()
-      })
+      updatedGuesses[currentGuessIndex] = {
+        guessed: true,
+        name: action.payload.name,
+        distance: action.payload.distance
+      }
 
       return {
         ...state,

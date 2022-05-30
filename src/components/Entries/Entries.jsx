@@ -1,4 +1,6 @@
 import { useContext,useEffect,useState } from 'react'
+// Components
+import { Entry } from "../Entry"
 // Context
 import gameContext from '../../contexts/game/gameContext'
 // Functions
@@ -7,18 +9,18 @@ import { calcDistance } from '../../functions/calcDistance';
 import { lakes } from '../../data/lakes';
 // Style
 import {
-  EntriesForm,
-  Guess
+  EntriesForm
 } from './Entries.styles';
 
 const Entries = () => {
   const { gameDispatch,gameState } = useContext(gameContext)
   const [ currentGuess,setCurrentGuess ] = useState('')
   const [ disabled,setDisabled ] = useState(true);
-  const correctLakeName = lakes.filter(lake => lake.name === gameState.todaysLake)[0].name
+  const correctLake = lakes.filter(lake => lake.name === gameState.todaysLake)[0]
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const currentLake = lakes.filter(lake => lake.name === currentGuess)[0]
 
     if(lakes.filter(lake => lake.name === currentGuess).length) {
       console.log("yes in list")
@@ -26,15 +28,17 @@ const Entries = () => {
       console.log("not in list")
     }
 
-    if(currentGuess === correctLakeName) {
+    if(currentGuess === correctLake.name) {
       console.log("bingo")
     }
 
     gameDispatch({
-      type: 'SET_GUESSES',
-      payload: currentGuess
+      type: 'SET_GUESS',
+      payload: {
+        name: currentGuess,
+        distance: calcDistance(currentLake.lat,currentLake.lon,correctLake.lat,correctLake.lon)
+      }
     });
-    console.log(calcDistance("48.08722","-90.31778","47.88583","-90.87778"))
     setCurrentGuess('');
   };
 
@@ -42,6 +46,10 @@ const Entries = () => {
     const val = event.target.value;
     setCurrentGuess(val)
   }
+
+  useEffect(() => {
+    console.log(gameState)
+  },[gameState]);
 
   useEffect(() => {
     setDisabled(currentGuess === "" ? true : false);
@@ -53,7 +61,11 @@ const Entries = () => {
     <>
       {fiveArr.map((item,index) => {
         return(
-          <Guess key={index}>{gameState.guesses[index] ? gameState.guesses[index].text : ""}</Guess>
+          <Entry
+            key={index}
+            name={gameState.guesses[index].name}
+            distance={gameState.guesses[index].distance.mi === null ? "" : (Math.round(gameState.guesses[index].distance.mi * 10) / 10)+" mi."}
+          />
         )
       })}
       <EntriesForm onSubmit={handleSubmit}>

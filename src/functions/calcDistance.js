@@ -26,7 +26,7 @@ export const calcDistance = function(lat1, lon1, lat2, lon2) {
 
   // calculate the result
   return({
-    miles: c*rMiles,
-    kilometers: c*rKilometers
+    mi: c*rMiles,
+    km: c*rKilometers
   });
 }
