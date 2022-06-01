@@ -25,7 +25,7 @@ function App() {
           <h1>PADD<span>DLE</span></h1>
         </Header>
         <Main>
-          <img src="/sawbill.svg" alt="lake" />
+          <img src="/images/lakes/mudro.svg" alt="lake" />
           <Entries />
         </Main>
         <Footer>
