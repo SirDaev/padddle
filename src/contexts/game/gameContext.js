@@ -15,7 +15,7 @@ export const initialGameData = {
     {guessed: false, name: "", distance: {mi: null, km: null}},
     {guessed: false, name: "", distance: {mi: null, km: null}}
   ],
-  todaysLake: "Sawbill"
+  todaysLake: "Saganaga"
 }
 
 export const gameReducer = (state = initialGameData, action) => {

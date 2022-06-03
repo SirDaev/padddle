@@ -1,5 +1,6 @@
 import { useReducer } from 'react'
 import { ThemeProvider } from 'styled-components';
+import { DateTime } from 'luxon';
 // Components
 import { Entries } from './components/Entries'
 import { Main } from './components/Main'
@@ -16,7 +17,12 @@ const theme = {
 }
 
 function App() {
-  const [gameState,gameDispatch] = useReducer(gameReducer,initialGameData)
+  const [gameState,gameDispatch] = useReducer(gameReducer,initialGameData);
+
+  const gameStartDate = DateTime.fromFormat('01-01-2022', 'MM-dd-yyyy');
+  const daysSinceGameStartDate = Math.floor(Math.abs(gameStartDate.diffNow('days',{}).values.days));
+  const todaysLakeIndex = daysSinceGameStartDate%150;
+  console.log(todaysLakeIndex);
 
   return (
     <GameProvider value={{ gameState,gameDispatch}}>
@@ -25,7 +31,7 @@ function App() {
           <h1>PADD<span>DLE</span></h1>
         </Header>
         <Main>
-          <img src="/images/lakes/mudro.svg" alt="lake" />
+          <img src="/images/lakes/saganaga.svg" alt="lake" />
           <Entries />
         </Main>
         <Footer>
