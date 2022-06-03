@@ -14,7 +14,10 @@ const Entry = ({
   return (
     <EntryEl>
       <EntryName>{name}</EntryName>
-      <EntryDistance>{distance}</EntryDistance>
+      <EntryDistance>
+        {distance > 0 && distance+"mi."}
+        {distance === 0 && "[YAY]"}
+      </EntryDistance>
     </EntryEl>
   )
 }

@@ -4,6 +4,7 @@ import { Entry } from "../Entry"
 // Context
 import gameContext from '../../contexts/game/gameContext'
 // Functions
+import { calcBearing } from '../../functions/calcBearing';
 import { calcDistance } from '../../functions/calcDistance';
 // Data
 import { lakes } from '../../data/lakes';
@@ -22,15 +23,7 @@ const Entries = () => {
     event.preventDefault();
     const currentLake = lakes.filter(lake => lake.name === currentGuess)[0]
 
-    if(lakes.filter(lake => lake.name === currentGuess).length) {
-      console.log("yes in list")
-    } else {
-      console.log("not in list")
-    }
-
-    if(currentGuess === correctLake.name) {
-      console.log("bingo")
-    }
+    calcBearing(currentLake.lat,currentLake.lon,correctLake.lat,correctLake.lon)
 
     gameDispatch({
       type: 'SET_GUESS',
@@ -64,7 +57,7 @@ const Entries = () => {
           <Entry
             key={index}
             name={gameState.guesses[index].name}
-            distance={gameState.guesses[index].distance.mi === null ? "" : (Math.round(gameState.guesses[index].distance.mi * 10) / 10)+" mi."}
+            distance={gameState.guesses[index].distance.mi === null ? "" : (Math.round(gameState.guesses[index].distance.mi * 10) / 10)}
           />
         )
       })}
