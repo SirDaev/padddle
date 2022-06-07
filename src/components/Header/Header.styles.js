@@ -3,8 +3,10 @@ import styled from 'styled-components';
 export const HeaderEl = styled.header`
   border-bottom: solid 1px #aaa;
   position: relative;
-  height: 40px;
-
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   h1 {
     margin: 0;
@@ -32,8 +34,8 @@ export const MenuButton = styled.button`
 
   span {
     display: flex;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     text-align: center;
     align-items: center;
     justify-content: center;

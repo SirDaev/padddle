@@ -30,7 +30,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <Header open={() => setMenuOpen(true)} />
         <Main>
-          <img src="/images/lakes/saganaga.svg" alt="lake" />
+          <img className="lake-image" src="/images/lakes/lac la croix.svg" alt="lake" />
           <Entries />
           <Modal isOpen={menuOpen} close={() => setMenuOpen(false)} />
         </Main>
