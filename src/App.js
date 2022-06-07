@@ -1,15 +1,16 @@
-import { useReducer } from 'react'
+import { useReducer,useState } from 'react'
 import { ThemeProvider } from 'styled-components';
 import { DateTime } from 'luxon';
 // Components
-import { Entries } from './components/Entries'
+import { Header } from './components/Header'
 import { Main } from './components/Main'
+import { Entries } from './components/Entries'
+import { Modal } from './components/Modal'
 // Context
 import { GameProvider,gameReducer,initialGameData } from './contexts/game/gameContext'
 // Style
 import {
-  Footer,
-  Header
+  Footer
 } from './App.styles';
 
 const theme = {
@@ -18,7 +19,7 @@ const theme = {
 
 function App() {
   const [gameState,gameDispatch] = useReducer(gameReducer,initialGameData);
-
+  const [menuOpen,setMenuOpen] = useState(false);
   const gameStartDate = DateTime.fromFormat('01-01-2022', 'MM-dd-yyyy');
   const daysSinceGameStartDate = Math.floor(Math.abs(gameStartDate.diffNow('days',{}).values.days));
   const todaysLakeIndex = daysSinceGameStartDate%150;
@@ -27,12 +28,11 @@ function App() {
   return (
     <GameProvider value={{ gameState,gameDispatch}}>
       <ThemeProvider theme={theme}>
-        <Header>
-          <h1>PADD<span>DLE</span></h1>
-        </Header>
+        <Header open={() => setMenuOpen(true)} />
         <Main>
           <img src="/images/lakes/saganaga.svg" alt="lake" />
           <Entries />
+          <Modal isOpen={menuOpen} close={() => setMenuOpen(false)} />
         </Main>
         <Footer>
           footer
