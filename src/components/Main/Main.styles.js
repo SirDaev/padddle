@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const MainEl = styled.main`
   
-  img {
+  .lake-image {
     width: 100%;
     height: auto;
     max-height: 350px;

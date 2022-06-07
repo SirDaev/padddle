@@ -27,7 +27,7 @@ export const MenuButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background: #aaa;
+    background: #ccc;
   }
 
   span {
