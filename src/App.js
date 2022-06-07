@@ -10,7 +10,8 @@ import { Modal } from './components/Modal'
 import { GameProvider,gameReducer,initialGameData } from './contexts/game/gameContext'
 // Style
 import {
-  Footer
+  Footer,
+  LakeImageWrapper
 } from './App.styles';
 
 const theme = {
@@ -30,7 +31,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <Header open={() => setMenuOpen(true)} />
         <Main>
-          <img className="lake-image" src="/images/lakes/lac la croix.svg" alt="lake" />
+          <LakeImageWrapper>
+            <img src="/images/lakes/sawbill.svg" alt="lake" />
+          </LakeImageWrapper>
           <Entries />
           <Modal isOpen={menuOpen} close={() => setMenuOpen(false)} />
         </Main>
