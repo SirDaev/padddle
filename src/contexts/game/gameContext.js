@@ -9,11 +9,11 @@ export default gameContext;
 
 export const initialGameData = {
   guesses: [
-    {guessed: false, name: "", distance: {mi: null, km: null}},
-    {guessed: false, name: "", distance: {mi: null, km: null}},
-    {guessed: false, name: "", distance: {mi: null, km: null}},
-    {guessed: false, name: "", distance: {mi: null, km: null}},
-    {guessed: false, name: "", distance: {mi: null, km: null}}
+    {guessed: false, name: "", distance: {mi: null, km: null}, bearing: null},
+    {guessed: false, name: "", distance: {mi: null, km: null}, bearing: null},
+    {guessed: false, name: "", distance: {mi: null, km: null}, bearing: null},
+    {guessed: false, name: "", distance: {mi: null, km: null}, bearing: null},
+    {guessed: false, name: "", distance: {mi: null, km: null}, bearing: null}
   ],
   todaysLake: "Saganaga"
 }
@@ -37,7 +37,8 @@ export const gameReducer = (state = initialGameData, action) => {
       updatedGuesses[currentGuessIndex] = {
         guessed: true,
         name: action.payload.name,
-        distance: action.payload.distance
+        distance: action.payload.distance,
+        bearing: action.payload.bearing
       }
 
       return {
