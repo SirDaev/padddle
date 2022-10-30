@@ -23,13 +23,12 @@ const Entries = () => {
     event.preventDefault();
     const currentLake = lakes.filter(lake => lake.name === currentGuess)[0]
 
-    calcBearing(currentLake.lat,currentLake.lon,correctLake.lat,correctLake.lon)
-
     gameDispatch({
       type: 'SET_GUESS',
       payload: {
         name: currentGuess,
-        distance: calcDistance(currentLake.lat,currentLake.lon,correctLake.lat,correctLake.lon)
+        distance: calcDistance(currentLake.lat,currentLake.lon,correctLake.lat,correctLake.lon),
+        bearing: calcBearing(currentLake.lat,currentLake.lon,correctLake.lat,correctLake.lon)
       }
     });
     setCurrentGuess('');
@@ -58,6 +57,7 @@ const Entries = () => {
             key={index}
             name={gameState.guesses[index].name}
             distance={gameState.guesses[index].distance.mi === null ? "" : (Math.round(gameState.guesses[index].distance.mi * 10) / 10)}
+            bearing={gameState.guesses[index].bearing === null ? "" : (Math.round(gameState.guesses[index].bearing * 10) / 10)}
           />
         )
       })}

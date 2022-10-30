@@ -32,7 +32,7 @@ function App() {
         <Header open={() => setMenuOpen(true)} />
         <Main>
           <LakeImageWrapper>
-            <img src="/images/lakes/sawbill.svg" alt="lake" />
+            <img src="/images/lakes/saganaga.svg" alt="lake" />
           </LakeImageWrapper>
           <Entries />
           <Modal isOpen={menuOpen} close={() => setMenuOpen(false)} />

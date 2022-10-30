@@ -11,9 +11,13 @@ export const EntryEl = styled.div`
 `;
 
 export const EntryName = styled.div`
-  flex-basis: 70%;
+  flex-basis: 60%;
 `;
 
 export const EntryDistance = styled.div`
-  flex-basis: 30%;
+  flex-basis: 20%;
+`;
+
+export const EntryBearing = styled.div`
+  flex-basis: 20%;
 `;

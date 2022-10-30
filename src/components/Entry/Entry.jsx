@@ -1,6 +1,7 @@
 
 // Style
 import {
+  EntryBearing,
   EntryDistance,
   EntryEl,
   EntryName
@@ -8,7 +9,8 @@ import {
 
 const Entry = ({
   name="",
-  distance=""
+  distance="",
+  bearing=""
 }) => {
 
   return (
@@ -18,6 +20,9 @@ const Entry = ({
         {distance > 0 && distance+"mi."}
         {distance === 0 && "[YAY]"}
       </EntryDistance>
+      <EntryBearing>
+        {bearing}
+      </EntryBearing>
     </EntryEl>
   )
 }
